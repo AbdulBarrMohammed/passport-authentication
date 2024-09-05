@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <link rel="stylesheet" href="/style.css">
+  </head>
+<body>
+    <div class="content-container">
+       <h2>Create A New Message</h2>
+        <form action="/message/create" method="POST">
+            <label for="title">Title: </label>
+            <input type="text" name="title" id="title" required>
+
+            <label for="text">Message: </label>
+            <textarea name="text" id="text" placeholder="Enter your message here..." required></textarea>
+
+            <button type="submit">Add Message</button>
+          </form>
+
+      </div>
+
+</body>
+</html>

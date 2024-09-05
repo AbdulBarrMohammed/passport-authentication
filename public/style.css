@@ -1,0 +1,123 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(22, 27, 34);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: #26a7de;
+    cursor: pointer;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+}
+.form-containers {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+}
+
+.header {
+    border-bottom: 1px solid rgb(62, 68, 76);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.right-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+input {
+    padding: 10px;
+    background-color: rgb(22, 27, 34);
+    border: 1px solid rgb(62, 68, 76);
+    font-size: 1.2rem;
+    border-radius: 5px;
+    width: 400px;
+}
+
+form button {
+    padding: 10px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    background-color: #26a7de;
+    border: none;
+    color: white;
+    font-weight: bold;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.message-card {
+    display: flex;
+    padding: 40px 20px;
+    gap: 150px;
+    justify-content: space-between;
+    border: 1px solid rgb(62, 68, 76);
+    align-items: center;
+    border-radius: 5px;
+}
+
+.content-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 150px;
+    padding: 20px;
+}
+
+.content-cards {
+    padding: 20px;
+}
+
+.message-counter {
+    background-color: #26a7de;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.delete-button {
+    padding: 0;
+    margin: 0;
+    gap: 0;
+}
+
+span {
+    color: #26a7de;
+}
+
+.card-left {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
