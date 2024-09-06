@@ -146,3 +146,14 @@ span {
     flex-direction: column;
     gap: 5px;
 }
+
+textarea {
+    background-color: rgb(22, 27, 34);
+    padding: 10px;
+    color: white;
+    font-size: 1rem;
+}
+
+.content-container {
+    padding: 10px;
+}
