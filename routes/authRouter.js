@@ -7,7 +7,6 @@ const router = Router();
 
 
 router.get("/", authController.displayIndex)
-router.get("/dashboard", authController.displayDashboard);
 router.get("/sign-up", authController.signUpGet);
 router.post("/sign-up", authController.signUpPost);
 router.post("/log-in", authController.logInPost);

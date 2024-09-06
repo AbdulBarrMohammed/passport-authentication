@@ -74,6 +74,11 @@ async function deleteMessage(id) {
     await pool.query(query, [id]);
 }
 
+async function countMessages() {
+    const { rows } = await pool.query("SELECT COUNT(*) FROM messages");
+    return parseInt(rows[0].count, 10);
+
+}
 
 module.exports = {
     insertNewUsers,
@@ -83,5 +88,6 @@ module.exports = {
     getAllMessages,
     insertNewMessage,
     deleteMessage,
-    updateUserAdmin
+    updateUserAdmin,
+    countMessages
 }

@@ -11,6 +11,13 @@
 
     <div class="content">
         <h2>Create An Account</h2>
+        <% if (locals.errors) {%>
+            <ul>
+              <% errors.forEach(function(error) { %>
+                <li><%= error.msg %></li>
+              <% }); %>
+            </ul>
+          <% } %>
         <form action="" method="POST">
             <div class="form-containers">
                 <input id="firstName" name="firstName" type="text" placeholder="First Name" />

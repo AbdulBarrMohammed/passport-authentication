@@ -25,8 +25,9 @@ app.use("/", authRouter);
 app.use("/", joinRouter);
 app.use("/", messegeRouter);
 app.use("/", adminRouter)
-module.exports = { passport };
+//module.exports = { passport };
 
+module.exports = app;
 
 
 app.listen(4001, () => console.log("app listening on port 4001!"));

@@ -14,15 +14,18 @@
             <h1>MyDiary</h1>
             <div class="right-buttons">
                 <p>Welcome <%= user.username %></p>
-                <a href="/memberForm">Join club</a>
-                <a href="/adminForm">Become admin</a>
-                <a href="/log-out">Log out</a>
+                <a href="/memberForm">Join Club</a>
+                <a href="/adminForm">Become Admin</a>
+                <a href="/log-out">Log Out</a>
 
             </div>
         </header>
         <div class="content-cards">
             <div class="content-buttons">
                 <div class="message-counter">
+                    <div class="circle">
+                        <p><%= messageCount %></p>
+                    </div>
                     <p>Messages</p>
                 </div>
                 <a href="/message/create">Create Message</a>

@@ -2,17 +2,42 @@ const passport = require("passport");
 const bcrypt = require('bcryptjs');
 const LocalStrategy = require('passport-local').Strategy;
 const db = require('../db/queries');
+const { body, validationResult } = require("express-validator");
+
+const alphaErr = "must only contain letters.";
+const lengthErr = "must be between 1 and 10 characters.";
+const passLengthErr =  "must be at least 8 characters.";
+const usernameLengthErr =  "must be at least 4 characters.";
+
+const validateUser = [
+  body("firstName").trim()
+    .isAlpha().withMessage(`First name ${alphaErr}`)
+    .isLength({ min: 1, max: 10 }).withMessage(`First name ${lengthErr}`),
+  body("lastName").trim()
+    .isAlpha().withMessage(`Last name ${alphaErr}`)
+    .isLength({ min: 1, max: 10 }).withMessage(`Last name ${lengthErr}`),
+  body("username").trim().matches(/[a-z]/)
+    .withMessage('Username must contain at least one lowercase letter')
+    .matches(/[0-9]/).isLength({ min: 4, max: 40 }).withMessage(`User name ${usernameLengthErr}`),
+
+
+  body("password").notEmpty()
+  .withMessage('Password is required').trim().isLength({min: 8, max: 50}).withMessage(`Password ${passLengthErr}`).matches(/[A-Z]/)
+  .withMessage('Password must contain at least one uppercase letter')
+  .matches(/[a-z]/)
+  .withMessage('Password must contain at least one lowercase letter')
+  .matches(/[0-9]/)
+  .withMessage('Password must contain at least one number'),
+];
 
 async function displayIndex(req, res) {
     const messages = await db.getAllMessages();
     //res.render('index', { user: user, messages: messages });
-    res.render("views/index", { user: req.user, messages: messages });
+    const messageCount = await db.countMessages();
+    res.render("views/index", { user: req.user, messages: messages, messageCount: messageCount });
 }
 
-async function displayDashboard(req, res) {
 
-    res.render("views/userDashboard", { user: req.user});
-}
 
 
 async function signUpGet(req, res) {
@@ -26,8 +51,18 @@ async function logInPost(req, res, next) {
       })(req, res, next);
 }
 
+const signUpPost = [
+  validateUser,
 
-async function signUpPost(req, res, next) {
+   async (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      console.log("ERRRORRRR")
+      return res.status(400).render("views/sign-up", {
+        title: "Sign Up",
+        errors: errors.array(),
+      });
+    }
     const { firstName, lastName, username, password  } = req.body;
     const membership_status = 'inactive';
     console.log(firstName, lastName)
@@ -58,6 +93,8 @@ async function signUpPost(req, res, next) {
       return next(err);
     }
 }
+
+]
 
 passport.use(
     new LocalStrategy(async (username, password, done) => {
@@ -111,7 +148,6 @@ passport.deserializeUser(async (id, done) => {
     signUpGet,
     signUpPost,
     logInPost,
-    displayDashboard,
     displayIndex,
     logOutGet
 
